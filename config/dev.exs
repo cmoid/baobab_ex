@@ -1,4 +1,4 @@
 import Config
 
 config :baobab,
-  spool_dir: "~/.catenary/spool"
+  spool_dir: "~/local_baobab/spool"
