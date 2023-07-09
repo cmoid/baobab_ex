@@ -30,7 +30,8 @@ defmodule Baobab.MixProject do
       {:varu64, "~> 1.0.0"},
       {:yamfhash, ">= 1.0.0"},
       # Not written by me
-      {:enacl, "~> 1.2"},
+      # {:enacl, "~> 1.2"},
+      {:enacl, git: "https://git.sr.ht/~cmoid/enacl"},
       {:jason, "~> 1.4"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
