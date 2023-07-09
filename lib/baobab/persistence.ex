@@ -23,6 +23,30 @@ defmodule Baobab.Persistence do
   end
 
   defp perform_action(which, :get, key) do
+    io_str =
+      case is_tuple(key) do
+        true ->
+          case length(Tuple.to_list(key)) == 2 do
+            true ->
+              {c_id, tab} = key
+              c_id <> " " <> Atom.to_string(tab)
+
+            false ->
+              nil
+          end
+
+        false ->
+          nil
+      end
+
+    case is_nil(io_str) do
+      true ->
+        nil
+
+      false ->
+        IO.puts(["Looking up: ", io_str])
+    end
+
     case :dets.lookup(which, key) do
       [{^key, val} | _] -> val
       [] -> nil
@@ -107,6 +131,8 @@ defmodule Baobab.Persistence do
   defp recompute_hash(_, :metadata), do: "nahnah"
 
   defp recompute_hash(clump_id, which) do
+    IO.puts(["recomputing!! ", clump_id, " ", Atom.to_string(which)])
+
     stuff =
       case which do
         :content ->
